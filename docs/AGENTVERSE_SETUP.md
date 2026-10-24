@@ -29,41 +29,52 @@ agent1qf3a2vppnvrg4txephs5ut9vn0x5tfyd87aer4fszxtlh35vj6ay7z4f2mr
 
 ---
 
-## 3. Option A: Connecting via Agentverse Mailbox (Recommended for Local Hosting)
+## 3. Connecting via Agentverse Mailbox (Recommended for Local Hosting)
 
-The **Agentverse Mailbox** allows your local HakkuAI agent to receive messages from ASI:One and other agents 24/7 without opening firewall ports or acquiring a static public IP.
+The **Agentverse Mailbox** allows your local HakkuAI agent to receive messages from ASI:One and other agents 24/7 without opening router ports or having a public static IP.
 
-### Step 1: Create a Mailbox on Agentverse
-1. Log in to [Agentverse](https://agentverse.ai).
-2. Go to **My Agents** -> **Local Agents**.
-3. Click **Connect Local Agent**.
-4. Enter your Agent Name: `hakkuai_welfare_assistant`.
-5. Enter your Agent Address (obtained from the command above).
-6. Copy the generated **Mailbox Key**.
+In `uAgents >= 0.26.0`, connection is handled seamlessly via the built-in **Agent Inspector**:
 
-### Step 2: Configure Environment Variables
-Copy `.env.example` to `.env` and fill in your Mailbox configuration:
+### Step 1: Configure Environment Variables
+Copy `.env.example` to `.env` if you have not already:
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env`:
+Ensure `.env` contains:
 ```ini
 HAKKUAI_AGENT_NAME=hakkuai_welfare_assistant
 HAKKUAI_AGENT_PORT=8000
 HAKKUAI_AGENT_SEED=your_secure_unique_seed_phrase_here
 
-# Enable Mailbox
+# Enable Mailbox mode for Agentverse
 HAKKUAI_MAILBOX_ENABLED=true
-AGENTVERSE_MAILBOX_KEY=your_copied_mailbox_key_here
 ```
 
-### Step 3: Start HakkuAI
+### Step 2: Start HakkuAI as a Local Agent
+Run HakkuAI in agent daemon mode:
 ```bash
 python src/hakkuai/agent.py
 ```
-HakkuAI will connect to `https://agentverse.ai`, establish its websocket mailbox tunnel, and register its protocol manifests automatically!
+Upon startup, `uagents` starts the local ASGI server on `http://0.0.0.0:8000` and displays your **Agent Inspector** URL in the terminal logs:
+```text
+INFO: [hakkuai_welfare_assistant]: Agent inspector available at https://agentverse.ai/inspect/?uri=http%3A//127.0.0.1%3A8000&address=agent1qf3a2vppnvrg4txephs5ut9vn0x5tfyd87aer4fszxtlh35vj6ay7z4f2mr
+```
+
+### Step 3: Connect in Agentverse
+1. Log in to [Agentverse](https://agentverse.ai).
+2. Open the **Agent Inspector** URL displayed in your startup terminal in your web browser.
+3. In the Inspector interface, click the **Connect** button.
+4. Select the **Mailbox** option.
+5. Confirm the connection. Agentverse will verify your agent's cryptographic identity and provision the mailbox endpoint.
+
+Once connected, your local terminal will confirm:
+```text
+INFO: [mailbox]: Successfully registered as mailbox agent in Agentverse.
+INFO: [hakkuai_welfare_assistant]: Starting mailbox client for https://agentverse.ai
+```
+Your agent is now visible in the Agentverse **My Agents** dashboard under **Local Agents** with the **Mailbox** badge.
 
 ---
 

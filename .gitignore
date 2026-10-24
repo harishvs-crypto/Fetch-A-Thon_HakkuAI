@@ -36,6 +36,8 @@ env/
 *.pem
 *.key
 *.seed
+private_keys.json
+*private_key*.json
 
 # Testing and coverage
 .pytest_cache/

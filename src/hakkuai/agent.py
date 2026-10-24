@@ -22,19 +22,14 @@ def create_agent() -> Agent:
     """
     Factory function creating and configuring the HakkuAI uAgent.
     """
-    # Configure mailbox arguments if enabled
-    mailbox_param = None
-    if settings.MAILBOX_ENABLED:
-        if settings.AGENTVERSE_MAILBOX_KEY:
-            mailbox_param = f"{settings.AGENTVERSE_MAILBOX_KEY}@https://agentverse.ai"
-        else:
-            mailbox_param = True # Auto-mailbox via agentverse
+    # Configure mailbox according to uAgents 0.26.1 specification (boolean flag)
+    use_mailbox = bool(settings.MAILBOX_ENABLED)
 
     agent = Agent(
         name=settings.AGENT_NAME,
         port=settings.AGENT_PORT,
         seed=settings.AGENT_SEED,
-        mailbox=mailbox_param
+        mailbox=use_mailbox
     )
 
     # Include Official Agent Chat Protocol (ACP)
