@@ -16,7 +16,12 @@ if src_dir not in sys.path:
 from uagents import Agent, Context
 from hakkuai.config import settings
 from hakkuai.logging_config import logger
-from hakkuai.acp_handlers import chat_proto, welfare_rpc_proto, conversation_engine
+from hakkuai.acp_handlers import (
+    chat_proto,
+    welfare_rpc_proto,
+    readiness_proto,
+    conversation_engine,
+)
 
 def create_agent() -> Agent:
     """
@@ -29,7 +34,8 @@ def create_agent() -> Agent:
         name=settings.AGENT_NAME,
         port=settings.AGENT_PORT,
         seed=settings.AGENT_SEED,
-        mailbox=use_mailbox
+        mailbox=use_mailbox,
+        network=settings.AGENT_NETWORK,
     )
 
     # Include Official Agent Chat Protocol (ACP)
@@ -37,6 +43,9 @@ def create_agent() -> Agent:
 
     # Include Structured Inter-Agent Welfare RPC Protocol
     agent.include(welfare_rpc_proto, publish_manifest=True)
+    
+    agent.include(readiness_proto, publish_manifest=True)
+
 
     @agent.on_event("startup")
     async def startup_handler(ctx: Context):
@@ -46,6 +55,7 @@ def create_agent() -> Agent:
         ctx.logger.info(f"Agent Name    : {agent.name}")
         ctx.logger.info(f"Agent Address : {agent.address}")
         ctx.logger.info(f"Listening Port: {settings.AGENT_PORT}")
+        ctx.logger.info(f"Network       : {settings.AGENT_NETWORK}")
         ctx.logger.info(f"ACP Protocol  : AgentChatProtocol v0.3.0 (Enabled)")
         ctx.logger.info(f"Mailbox Mode  : {'Active' if settings.MAILBOX_ENABLED else 'Local Standalone'}")
         ctx.logger.info("Ready for ASI:One & Agentverse communication.")

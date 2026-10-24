@@ -21,6 +21,9 @@ class Settings:
     AGENTVERSE_API_KEY: str | None = os.getenv("AGENTVERSE_API_KEY", None)
     AGENTVERSE_MAILBOX_KEY: str | None = os.getenv("AGENTVERSE_MAILBOX_KEY", None)
     
+    # Network Configuration (testnet / mainnet)
+    AGENT_NETWORK: str = os.getenv("HAKKUAI_NETWORK", "testnet")
+    
     # Path to scheme database JSON
     SCHEMES_FILE: Path = Path(os.getenv("SCHEMES_DATA_PATH", str(DATA_DIR / "schemes.json")))
     
