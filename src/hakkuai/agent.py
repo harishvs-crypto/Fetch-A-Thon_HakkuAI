@@ -6,6 +6,13 @@ handles Agentverse/Mailbox setup, and provides optional health endpoints and CLI
 
 import argparse
 import sys
+from pathlib import Path
+
+# Ensure 'src' is in sys.path when executed directly as a script
+src_dir = str(Path(__file__).resolve().parent.parent)
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
 from uagents import Agent, Context
 from hakkuai.config import settings
 from hakkuai.logging_config import logger

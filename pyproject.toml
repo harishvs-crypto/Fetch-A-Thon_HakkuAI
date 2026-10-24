@@ -21,6 +21,9 @@ dependencies = [
     "aiohttp>=3.9.0"
 ]
 
+[project.scripts]
+hakkuai = "hakkuai.agent:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
