@@ -245,10 +245,11 @@ class ConversationEngine:
         if any(re.search(pat, t) for pat in missing_doc_patterns):
             return "INTENT_MISSING_DOCUMENT"
 
-        # 3. Application procedure / office inquiry
+        # 3. Application procedure / office inquiry / next steps
         app_step_patterns = [
             r"\b(how to apply|where to apply|where do i go|where should i go|which office|application process|portal|whom to contact|how do i claim)\b",
-            r"\b(எப்படி விண்ணப்பிப்பது|எங்கு செல்ல வேண்டும்|எந்த அலுவலகம்)\b"
+            r"\b(what should i do next|what do i do next|what to do next|what is next|next steps?|next action|what next|where to start)\b",
+            r"\b(எப்படி விண்ணப்பிப்பது|எங்கு செல்ல வேண்டும்|எந்த அலுவலகம்|அடுத்து என்ன செய்ய வேண்டும்|அடுத்த கட்டம்)\b"
         ]
         if any(re.search(pat, t) for pat in app_step_patterns):
             return "INTENT_APPLICATION_STEPS"
@@ -505,6 +506,29 @@ class ConversationEngine:
         # Calculate actual counts dynamically
         available_count = sum(1 for i in checklist.items if i.status == DocumentStatus.AVAILABLE)
         missing_count = sum(1 for i in checklist.items if i.status == DocumentStatus.MISSING)
+
+        # Dedicated branch when user specifically asks about alternative documents
+        if re.search(r"\balternative\b", raw_text.lower()) or "மாற்று" in raw_text:
+            if is_ta:
+                return (
+                    "நீங்கள் சமர்ப்பிக்கக்கூடிய அதிகாரப்பூர்வ மாற்று ஆவணங்கள்:\n\n"
+                    "1. **மருத்துவ சான்றுகளுக்கு**: மருத்துவமனை வெளியேற்ற அறிக்கை இல்லையெனில், அவசர சிகிச்சைப் பிரிவு சீட்டு (OPD/Casualty Card), அரசு மருத்துவரின் காயம் குறித்த சிகிச்சைச் சீட்டு, மருந்து சீட்டுகள் மற்றும் எக்ஸ்-ரே அறிக்கைகளை வழங்கலாம்.\n"
+                    "2. **நல வாரிய அட்டைக்கு**: வாரிய அட்டை இல்லையெனில், இணையதள பதிவு ஒப்புகைச் சீட்டு, கட்டண ரசீது, அல்லது இ-ஷ்ராம் (e-Shram) 12 இலக்க UAN அட்டையை சமர்ப்பிக்கலாம்.\n"
+                    "3. **பணி மற்றும் விபத்து ஆதாரத்திற்கு**: முதலாளி ஆவணம் தர மறுத்தால், சக தொழிலாளர்களின் உறுதிமொழிப் பத்திரம் (Coworker Affidavit), சைட் வருகைப் பதிவு, அல்லது கூலி ரசீதுகளைப் பயன்படுத்தலாம்.\n"
+                    "4. **வங்கி பாஸ்புக்கிற்கு**: ரத்து செய்யப்பட்ட காசோலை (Cancelled Cheque) அல்லது வங்கி கணக்கு அறிக்கை.\n\n"
+                    f"📋 **ஆவணங்கள் தயார் நிலை**: {available_count} தயார், {missing_count} தேவைப்படுகிறது.\n\n"
+                    "❓ இந்த மாற்று ஆவணங்களில் உங்களிடம் தற்போது எவை தயாராக உள்ளன?"
+                )
+            else:
+                return (
+                    "Here are the officially recognized alternative documents you can provide when standard documents are missing:\n\n"
+                    "1. **Medical Alternatives**: If you do not have a formal discharge summary, you can submit an **Emergency Casualty Card, Outpatient (OPD) Treatment Slip, Government Doctor's Injury Certificate**, along with original pharmacy bills and diagnostic X-ray/scan reports.\n"
+                    "2. **BOCW Board Membership Alternatives**: If your physical card is missing, you can present your **Online Registration Acknowledgment Slip, Annual Renewal Fee Receipt**, or your 12-digit **e-Shram UAN Card** verifying your construction occupation.\n"
+                    "3. **Employment & Accident Proof Alternatives**: If your employer refuses to provide work records, submit a **Signed Affidavit from two coworker witnesses**, site attendance/muster roll entries, contractor payment vouchers, or supervisor WhatsApp/SMS instructions.\n"
+                    "4. **Bank Account Proof Alternatives**: A **Cancelled Cheque Leaf** or an official stamped bank statement showing your name and IFSC code.\n\n"
+                    f"📋 **Document Readiness Update**: {available_count} available, {missing_count} missing or requiring fallback evidence.\n\n"
+                    "❓ Which of these alternative documents do you currently have available or can easily obtain?"
+                )
 
         if is_ta:
             return (

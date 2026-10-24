@@ -188,3 +188,66 @@ def test_session_isolation_in_followup_and_document_state():
 
     assert "hospital_discharge" not in session_1.profile.available_documents
     assert "hospital_discharge" in session_2.profile.available_documents
+
+def test_exact_4_step_user_sequence():
+    """
+    Directly tests the sequence requested:
+    - Turn 1: 'I am a construction worker in Tamil Nadu. I fractured my leg at work and cannot earn. I am registered with the welfare board.'
+    - Turn 2: 'No, I don't have any discharge summary. What should I do?'
+    - Turn 3: 'What alternative documents can I provide?'
+    - Turn 4: 'What should I do next?'
+    """
+    engine = ConversationEngine(SessionManager())
+    sender = "worker_4_step_user_sequence"
+
+    # Turn 1: Initial Assessment
+    r1 = engine.process_message(
+        sender,
+        "I am a construction worker in Tamil Nadu. I fractured my leg at work and cannot earn. I am registered with the welfare board."
+    )
+    assert "Hello! I am HakkuAI" in r1.response_text
+    assert "Identified Welfare Schemes & Statutory Compensation" in r1.response_text
+    s1 = engine.session_manager.get_or_create_session(sender)
+    assert s1.has_assessed is True
+    assert s1.profile.state == "Tamil Nadu"
+    assert s1.profile.is_construction_worker is True
+    assert s1.profile.is_bocw_registered is True
+
+    # Turn 2: Follow-up on missing discharge summary
+    r2 = engine.process_message(
+        sender,
+        "No, I don't have any discharge summary. What should I do?"
+    )
+    assert "Hello! I am HakkuAI" not in r2.response_text
+    assert "Identified Welfare Schemes & Statutory Compensation" not in r2.response_text
+    assert "NOT automatically disqualify" in r2.response_text
+    assert "Medical Records Department" in r2.response_text or "hospital" in r2.response_text.lower()
+    assert s1.document_statuses.get("doc_hospital_discharge") == DocumentStatus.MISSING
+    assert "hospital_discharge" not in s1.profile.available_documents
+
+    # Turn 3: Follow-up on alternative documents
+    r3 = engine.process_message(
+        sender,
+        "What alternative documents can I provide?"
+    )
+    assert "Hello! I am HakkuAI" not in r3.response_text
+    assert "Identified Welfare Schemes & Statutory Compensation" not in r3.response_text
+    assert "Medical Alternatives" in r3.response_text or "Emergency Casualty Card" in r3.response_text
+    assert "BOCW" in r3.response_text
+    assert "Employment & Accident Proof Alternatives" in r3.response_text or "Affidavit" in r3.response_text
+    # Document status remains Missing across subsequent turns
+    assert s1.document_statuses.get("doc_hospital_discharge") == DocumentStatus.MISSING
+    assert "hospital_discharge" not in s1.profile.available_documents
+
+    # Turn 4: Follow-up on next application actions
+    r4 = engine.process_message(
+        sender,
+        "What should I do next?"
+    )
+    assert "Hello! I am HakkuAI" not in r4.response_text
+    assert "Identified Welfare Schemes & Statutory Compensation" not in r4.response_text
+    assert "District Labour Office" in r4.response_text
+    assert "Written Notice of Accident to Employer" in r4.response_text
+    # Document status still strictly preserved as Missing
+    assert s1.document_statuses.get("doc_hospital_discharge") == DocumentStatus.MISSING
+    assert "hospital_discharge" not in s1.profile.available_documents
