@@ -78,12 +78,14 @@ DOCUMENT_CATALOG = [
 
 def generate_document_checklist(
     profile: WorkerProfile,
-    language: Language = Language.EN
+    language: Language = Language.EN,
+    explicit_statuses: dict[str, DocumentStatus] | None = None
 ) -> DocumentChecklist:
     """
     Constructs a personalized document checklist mapped to the worker's
     current situation, highlighting available items, missing items,
     and acceptable fallback evidence.
+    Supports persistent per-session explicit_statuses.
     """
     available_docs_lower = [d.lower() for d in profile.available_documents]
     items: list[DocumentItem] = []
@@ -91,22 +93,26 @@ def generate_document_checklist(
     for catalog_item in DOCUMENT_CATALOG:
         doc_id = catalog_item["document_id"]
         
-        # Determine status
-        is_available = any(
-            doc_id.replace("doc_", "") in avail or avail in doc_id
-            for avail in available_docs_lower
-        )
-        
-        if is_available:
-            status = DocumentStatus.AVAILABLE
+        # Check if an explicit per-session status has been established
+        if explicit_statuses and doc_id in explicit_statuses:
+            status = explicit_statuses[doc_id]
         else:
-            # If not explicitly marked available, check if needed
-            if doc_id == "doc_disability_certificate" and not profile.has_disability:
-                status = DocumentStatus.NOT_APPLICABLE
-            elif doc_id == "doc_bocw_card" and profile.is_bocw_registered is False:
-                status = DocumentStatus.MISSING
+            # Determine status based on profile available documents
+            is_available = any(
+                doc_id.replace("doc_", "") in avail or avail in doc_id
+                for avail in available_docs_lower
+            )
+            
+            if is_available:
+                status = DocumentStatus.AVAILABLE
             else:
-                status = DocumentStatus.MISSING if profile.available_documents else DocumentStatus.UNKNOWN
+                # If not explicitly marked available, check if needed
+                if doc_id == "doc_disability_certificate" and not profile.has_disability:
+                    status = DocumentStatus.NOT_APPLICABLE
+                elif doc_id == "doc_bocw_card" and profile.is_bocw_registered is False:
+                    status = DocumentStatus.MISSING
+                else:
+                    status = DocumentStatus.MISSING if profile.available_documents else DocumentStatus.UNKNOWN
 
         items.append(
             DocumentItem(
