@@ -1,0 +1,182 @@
+[
+  {
+    "scheme_id": "tn_bocw_accident_relief",
+    "name": "Tamil Nadu BOCW Welfare Board - Accident Relief Scheme",
+    "tamil_name": "தமிழ்நாடு கட்டுமானத் தொழிலாளர்கள் நல வாரியம் - விபத்து நிவாரணத் திட்டம்",
+    "department": "Tamil Nadu Construction Workers Welfare Board, Department of Labour, Govt of Tamil Nadu",
+    "state_or_national": "Tamil Nadu",
+    "target_beneficiaries": [
+      "Registered construction workers in Tamil Nadu",
+      "Manual and daily wage workers engaged in building or civil works in Tamil Nadu"
+    ],
+    "eligibility_criteria": [
+      "Must be a worker residing or working in Tamil Nadu",
+      "Must be an active registered member with TNBOCW Welfare Board (or enrolled in TNUWWB)",
+      "Accident or injury must have occurred during or as a result of employment or commute to work",
+      "Must have valid proof of medical treatment or disability"
+    ],
+    "benefit_description": "Financial compensation and medical reimbursement for registered construction workers facing workplace injury, disability, or death.",
+    "benefit_limits": "Accidental Death: Up to ₹5,00,000; Permanent Total Disability (loss of both limbs/eyes): Up to ₹2,00,000; Partial permanent disability: ₹50,000 - ₹1,00,000; Grievous injury hospitalization: ₹10,000 - ₹25,000.",
+    "required_documents": [
+      "TNBOCW Welfare Board Membership Card / Registration Number",
+      "Medical Certificate / Hospital Discharge Summary",
+      "Disability Certificate issued by Government Medical Board (if permanent disability)",
+      "FIR / Police GD Entry or Employer Accident Notice",
+      "Copy of Bank Passbook (active single-holder account)",
+      "Aadhaar Card Copy",
+      "Passport size photographs"
+    ],
+    "application_procedure": "Submit claim Form through the official TNUWWB portal (https://tnuwwb.tn.gov.in) or submit directly to the District Labour Officer (Social Security Scheme) within 6 months of the accident.",
+    "official_source_url": "https://tnuwwb.tn.gov.in",
+    "source_verification_date": "2024-10-15",
+    "verified_status": "verified",
+    "verification_notes": "Verified against Tamil Nadu Unorganised Workers Welfare Board statutory benefit schedules."
+  },
+  {
+    "scheme_id": "central_employees_compensation_1923",
+    "name": "Employees' Compensation Act, 1923 (Statutory Workplace Injury Compensation)",
+    "tamil_name": "பணியாளர் இழப்பீட்டுச் சட்டம் 1923 (தொழிலிட விபத்து சட்டபூர்வ இழப்பீடு)",
+    "department": "Ministry of Labour & Employment, Govt of India / Commissioner for Employees' Compensation",
+    "state_or_national": "National",
+    "target_beneficiaries": [
+      "Any worker (including daily wage, casual, or contract construction workers) who suffers personal injury arising out of and in the course of employment",
+      "Applies regardless of whether employer registered worker with BOCW board"
+    ],
+    "eligibility_criteria": [
+      "Worker must have suffered personal injury in an accident arising out of and in the course of employment",
+      "Applies in all States and Union Territories across India",
+      "Employer has statutory legal liability to provide compensation under Section 3 & 4 of the Act",
+      "Applicable even if worker has no formal written contract if work relationship is provable"
+    ],
+    "benefit_description": "Statutory legal compensation paid by employer/principal contractor for injury, permanent disablement, or death suffered during work.",
+    "benefit_limits": "Permanent Total Disablement: Formula based on 60% of monthly wages multiplied by age factor (statutory minimum ₹1,40,000 up to ₹10,00,000+); Temporary disablement: Half-monthly payments of 25% of wages during recovery; Full medical expense reimbursement.",
+    "required_documents": [
+      "Medical treatment records, hospital admission/discharge summary, injury memo",
+      "Proof of employment relation (muster roll, wage slip, contractor work order, supervisor message, or co-worker witness affidavits)",
+      "Written notice of accident submitted to employer/contractor",
+      "Disability assessment certificate from government doctor",
+      "Identity proof and Bank Account details"
+    ],
+    "application_procedure": "Deliver written notice of accident to employer. If employer refuses compensation, file a claim petition (Form F) before the Commissioner for Employees' Compensation (District Labour Court) within 2 years of accident.",
+    "official_source_url": "https://labour.gov.in",
+    "source_verification_date": "2024-09-20",
+    "verified_status": "verified",
+    "verification_notes": "Central statutory remedy under the Employees' Compensation Act 1923 (formerly Workmen's Compensation Act)."
+  },
+  {
+    "scheme_id": "ayushman_bharat_pmjay",
+    "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB-PMJAY)",
+    "tamil_name": "ஆயுஷ்மான் பாரத் - பிரதமர் மக்கள் ஆரோக்கியத் திட்டம் (இலவச மருத்துவக் காப்பீடு)",
+    "department": "National Health Authority (NHA), Ministry of Health & Family Welfare, Govt of India",
+    "state_or_national": "National",
+    "target_beneficiaries": [
+      "Bottom 40% vulnerable and unorganized worker families",
+      "Daily wage construction workers with eligible SECC / State Ration Cards (PHH / BPL)"
+    ],
+    "eligibility_criteria": [
+      "Family identified as eligible under SECC / State Food Security list / Priority Household (PHH) card",
+      "Available across empanelled public and private hospitals across India",
+      "No restriction on family size, age, or gender"
+    ],
+    "benefit_description": "Comprehensive cashless inpatient secondary and tertiary hospital treatment for trauma, surgery, and critical care.",
+    "benefit_limits": "Up to ₹5,00,000 per family per year on a cashless, paperless basis at empanelled hospitals.",
+    "required_documents": [
+      "Ayushman Card / State Health Card (e.g., CMCHIS card in Tamil Nadu)",
+      "Aadhaar Card or Government Photo Identity Card",
+      "Ration Card / Family Card verifying priority household status"
+    ],
+    "application_procedure": "Present Aadhaar card and Ration card at the Ayushman Mitra kiosk at any empanelled government or private hospital for instant verification and cashless admission.",
+    "official_source_url": "https://pmjay.gov.in",
+    "source_verification_date": "2024-10-01",
+    "verified_status": "verified",
+    "verification_notes": "Central health assurance scheme integrated with state schemes like Tamil Nadu CMCHIS."
+  },
+  {
+    "scheme_id": "central_pmsby",
+    "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "tamil_name": "பிரதமர் சுரக்ஷா பீமா யோஜனா (விபத்துக் காப்பீட்டுத் திட்டம்)",
+    "department": "Department of Financial Services, Ministry of Finance, Govt of India",
+    "state_or_national": "National",
+    "target_beneficiaries": [
+      "All individuals aged 18 to 70 with an active savings bank account who enrolled with annual premium deduction (₹20/year)"
+    ],
+    "eligibility_criteria": [
+      "Age between 18 and 70 years",
+      "Having a savings bank account with annual auto-debit consent (₹20/year)",
+      "Disability or death must be directly caused by accident"
+    ],
+    "benefit_description": "Affordable accidental death and disability insurance cover for low-income and daily wage workers.",
+    "benefit_limits": "Accidental death: ₹2,00,000; Total irrecoverable loss of both eyes or both limbs: ₹2,00,000; Irrecoverable loss of one eye or one limb: ₹1,00,000.",
+    "required_documents": [
+      "PMSBY Claim Form (available at bank)",
+      "Hospital Discharge summary & Medical attendant certificate",
+      "Disability Certificate from competent government medical authority",
+      "Bank passbook copy showing ₹20 auto-debit premium transaction",
+      "Police FIR / Panchanama or Hospital Accidental Injury Certificate",
+      "Aadhaar Card copy"
+    ],
+    "application_procedure": "Submit completed claim form and medical records to the bank branch where the auto-debit premium was deducted within 30 days of the injury or discharge.",
+    "official_source_url": "https://financialservices.gov.in",
+    "source_verification_date": "2024-08-10",
+    "verified_status": "verified",
+    "verification_notes": "Low-cost accident insurance scheme administered through commercial and rural banks."
+  },
+  {
+    "scheme_id": "central_eshram_registry",
+    "name": "e-Shram National Database for Unorganised Workers",
+    "tamil_name": "இ-ஷ்ராம் தேசிய அமைப்புசாரா தொழிலாளர் நலப் பதிவு",
+    "department": "Ministry of Labour & Employment, Govt of India",
+    "state_or_national": "National",
+    "target_beneficiaries": [
+      "All unorganized workers, daily wage laborers, and construction workers aged 16 to 59 not covered by EPFO/ESIC"
+    ],
+    "eligibility_criteria": [
+      "Must be an unorganized worker aged 16 to 59 years",
+      "Must not be an income taxpayer",
+      "Must not be a member of EPFO or ESIC"
+    ],
+    "benefit_description": "National portable identity (Universal Account Number - UAN) and access to central welfare and accidental social security support.",
+    "benefit_limits": "Provides 12-digit UAN Card; Accidental death cover of ₹2,00,000 and partial disability cover of ₹1,00,000 under integrated insurance provisions.",
+    "required_documents": [
+      "Aadhaar Card",
+      "Mobile number linked with Aadhaar",
+      "Bank Account details (Account number and IFSC code)"
+    ],
+    "application_procedure": "Free self-registration online at https://eshram.gov.in or through nearest Common Service Centre (CSC).",
+    "official_source_url": "https://eshram.gov.in",
+    "source_verification_date": "2024-10-05",
+    "verified_status": "verified",
+    "verification_notes": "National portal for unorganized worker social security linking."
+  },
+  {
+    "scheme_id": "karnataka_bocw_accident_benefit",
+    "name": "Karnataka BOCW Welfare Board - Accident Benefit Scheme",
+    "tamil_name": "கர்நாடக கட்டுமானத் தொழிலாளர்கள் நல வாரியம் - விபத்து நிவாரணம்",
+    "department": "Karnataka Building and Other Construction Workers Welfare Board, Govt of Karnataka",
+    "state_or_national": "Karnataka",
+    "target_beneficiaries": [
+      "Registered construction workers working in Karnataka with valid KBOCW identity card"
+    ],
+    "eligibility_criteria": [
+      "Must be a worker residing or working in Karnataka",
+      "Must have completed at least 90 days of construction work in Karnataka",
+      "Must be an active registered member with KBOCW Welfare Board",
+      "Accident or injury must be certified by medical authority"
+    ],
+    "benefit_description": "Ex-gratia relief and medical treatment assistance for registered construction workers in Karnataka injured on duty.",
+    "benefit_limits": "Accidental Death: ₹5,00,000; Permanent Total Disability: ₹2,00,000; Major surgery/grievous injury: Up to ₹50,000; Hospitalization: ₹10,000 - ₹20,000.",
+    "required_documents": [
+      "KBOCW Identity Card / Smart Card",
+      "Employer Certificate confirming 90 days work in construction",
+      "Hospital Discharge Summary and bills",
+      "Medical Board Disability Certificate (for permanent disability)",
+      "Police FIR / Accident Inspection Report",
+      "Bank Passbook copy and Aadhaar copy"
+    ],
+    "application_procedure": "Apply online through Seva Sindhu or KBOCWWB portal (https://kbocwwb.karnataka.gov.in) or submit to Senior Labour Inspector / District Labour Officer within 6 months.",
+    "official_source_url": "https://kbocwwb.karnataka.gov.in",
+    "source_verification_date": "2024-09-15",
+    "verified_status": "verified",
+    "verification_notes": "Karnataka state-specific construction worker benefit."
+  }
+]
